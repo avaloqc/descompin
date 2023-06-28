@@ -1,10 +1,10 @@
-import Badge from 'react-bootstrap/Button';
-import Button from 'react-bootstrap/Badge';
+import Badge from 'react-bootstrap/Badge';
+import Button from 'react-bootstrap/Button';
 import CardBS from 'react-bootstrap/Card'
 
-export const Card = ( { image, title, total}) => {
+export const Card = ( { image, title, total }) => {
   return (
-    <CardBS className="bg-primary text-white">
+    <CardBS className="bg-light text-black">
       <CardBS.Img src={image} alt="CardBS image" />
       <CardBS.ImgOverlay>
         <Button variant="primary">
