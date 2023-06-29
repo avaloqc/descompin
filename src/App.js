@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import { HomePage } from './pages/HomePage';
 import { HeaderPartial } from './partials/HeaderPartial';
+import { MinhasPastasPage } from "./pages/MinhasPastasPages";
 
 export default function App() {
   return (
@@ -13,7 +14,7 @@ export default function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<HomePage />} />
-          <Route path="/minhas-pastas" element={<h1>hola</h1>} />
+          <Route path="/minhas-pastas" element={<MinhasPastasPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
@@ -26,7 +27,6 @@ function Layout() {
       <>
         <HeaderPartial />
         <Outlet />
-        <footer>Descompin©️ me 2023</footer>
       </>
     </div>
   );
