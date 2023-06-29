@@ -12,11 +12,11 @@ export const HomePage = () =>
       message='Criado com successo'
       onClose={() => {console.log('clicou em fechar');}}
       />
-    <ModalSavePin show={true} />
+    <ModalSavePin show={false} />
     <ModalCreateFolder show={false} />
-    <Container flu  id>
+    <Container fluid>
       <Row>
-        <Col xs={12} md={2}><Card title="Título" image="https://picsum.photos/seed/picsum/200/200" total={3} /></Col>
+        <Col xs={12} md={2}><Card title="Título" image="https://picsum.photos/seed/picsum/200/235" total={3} /></Col>
       </Row>
     </Container>
   </>
