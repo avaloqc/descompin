@@ -1,9 +1,28 @@
 import * as types from './types';
+import * as pinService from '../services/pinService';
 
 export const openModalSavepinAction = () => ({
-  type: types.OPEN_MODAL_SAVE_PIN_TYPE
+  type: types.OpenModalSaveType
 });
 
 export const closeModalsAction = () => ({
-  type: types.CLOSE_MODALS_TYPE
+  type: types.CloseModalsType
 });
+
+export const fetchFoldersInitAction = () => {
+  return {
+    type: types.FetchFoldersInitType
+  }
+}
+export const fetchFoldersSuccessAction = (folders) => {
+  return {
+    type: types.FetchFoldersSuccessType,
+    payload: folders
+  }
+}
+export const fetchFoldersAction = async (dispatch) => {
+  dispatch(fetchFoldersInitAction())
+  const folders = await pinService.getFolders();
+  dispatch(fetchFoldersSuccessAction(folders));
+  
+}

@@ -7,7 +7,7 @@ import { useAppContext } from '../storage/AppContext';
 
 
 export const HomePage = () => {
-  const { state, dispatch } = useAppContext();
+  const { state } = useAppContext();
   return (
     <>
       <Notification

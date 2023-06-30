@@ -9,10 +9,11 @@ import { HomePage } from './pages/HomePage';
 import { HeaderPartial } from './partials/HeaderPartial';
 import { MinhasPastasPage } from "./pages/MinhasPastasPages";
 
+
 const initialState = {
   folders: [],
   activePinId: null,
-  mode: null,
+  mode: null, 
   type: null,
 }
 
@@ -33,7 +34,7 @@ function Layout() {
   return (
     <div className="App">
       <>
-        <AppContext initialState={{ initialState }}>
+        <AppContext initialState={initialState}>
           <HeaderPartial />
           <Outlet />
         </AppContext>

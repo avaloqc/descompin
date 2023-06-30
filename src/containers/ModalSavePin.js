@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -5,13 +6,19 @@ import { Modal } from "../components/Modal";
 import { Button } from "../components/Button";
 import { useAppContext } from '../storage/AppContext'
 import { closeModalsAction } from "../storage/actions";
+import { fetchFoldersAction } from "../storage/actions";
 
 
 export const ModalSavePin = ({ show }) => {
-  const { dispatch } = useAppContext();
+  const { state, dispatch } = useAppContext();
   const handleClose = () => {
     dispatch(closeModalsAction())
   }
+
+  useEffect(() => {
+    fetchFoldersAction(dispatch);
+  }, [])
+
   return (
     <Modal
       title="Salvar Pin"
@@ -27,14 +34,16 @@ export const ModalSavePin = ({ show }) => {
         }
       ]}>
       <ListGroup variant="flush">
-        <ListGroup.Item>
-          <Row>
-            <Col xs={8}> PLACEHOLDER TEXT </Col>
-            <Col xs={4} className='text-end'>
-              <Button label="Salvar" loadingLabel="Salvando"/>
-              </Col> 
-          </Row>
-        </ListGroup.Item>
+        {state.folders.map((folder, folderIndex) => (
+          <ListGroup.Item key={folderIndex}>
+            <Row>
+              <Col xs={8}> {folder.name} </Col>
+              <Col xs={4} className='text-end'>
+                <Button label="Salvar" loadingLabel="Salvando" />
+              </Col>
+            </Row>
+          </ListGroup.Item>
+        ))}
       </ListGroup>
     </Modal>
   )

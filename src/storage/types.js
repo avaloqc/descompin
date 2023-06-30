@@ -1,2 +1,6 @@
-export const OPEN_MODAL_SAVE_PIN_TYPE = 'open modal save pin';
-export const CLOSE_MODALS_TYPE = 'close modals';
+export const OpenModalSaveType = 'OPEN_MODAL_SAVE_PIN';
+export const CloseModalsType = 'CLOSE_MODALS';
+
+export const FetchFoldersInitType = 'FETCH_FOLDERS_INIT';
+export const FetchFoldersSuccessType = 'FETCH_FOLDERS_SUCCESS';
+export const FetchFoldersType = 'FETCH_FOLDERS';
