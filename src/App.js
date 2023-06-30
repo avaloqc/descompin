@@ -4,9 +4,17 @@ import {
   Routes,
   Outlet
 } from "react-router-dom";
+import { AppContext } from "./storage/AppContext";
 import { HomePage } from './pages/HomePage';
 import { HeaderPartial } from './partials/HeaderPartial';
 import { MinhasPastasPage } from "./pages/MinhasPastasPages";
+
+const initialState = {
+  folders: [],
+  activePinId: null,
+  mode: null,
+  type: null,
+}
 
 export default function App() {
   return (
@@ -25,8 +33,10 @@ function Layout() {
   return (
     <div className="App">
       <>
-        <HeaderPartial />
-        <Outlet />
+        <AppContext initialState={{ initialState }}>
+          <HeaderPartial />
+          <Outlet />
+        </AppContext>
       </>
     </div>
   );
