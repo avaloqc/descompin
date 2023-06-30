@@ -3,20 +3,28 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Modal } from "../components/Modal";
 import { Button } from "../components/Button";
+import { useAppContext } from '../storage/AppContext'
 
 
 export const ModalSavePin = ({ show }) => {
+  const { dispatch } = useAppContext();
+  const handleClose = () => {
+    dispatch({
+      type: 'close modals'
+    })
+  }
   return (
     <Modal
       title="Salvar Pin"
       show={show}
+      onHide={handleClose}
       controls={[
         {
           label: 'Criar Pasta',
           variant: 'secondary',
           loading: false,
           loadingLabel: 'Criando',
-          onclick: () => { 'clicou criar pasta' }
+          onClick: () => { 'clicou criar pasta' }
         }
       ]}>
       <ListGroup variant="flush">
