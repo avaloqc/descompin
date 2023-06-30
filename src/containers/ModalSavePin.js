@@ -5,14 +5,15 @@ import Col from "react-bootstrap/Col";
 import { Modal } from "../components/Modal";
 import { Button } from "../components/Button";
 import { useAppContext } from '../storage/AppContext'
-import { closeModalsAction } from "../storage/actions";
-import { fetchFoldersAction } from "../storage/actions";
-
+import { closeModalsAction, fetchFoldersAction, openModalCreateFolderAction } from "../storage/actions";
 
 export const ModalSavePin = ({ show }) => {
   const { state, dispatch } = useAppContext();
   const handleClose = () => {
     dispatch(closeModalsAction())
+  }
+  const handleClickCreateFolder = () => {
+    dispatch(openModalCreateFolderAction())
   }
 
   useEffect(() => {
@@ -30,7 +31,7 @@ export const ModalSavePin = ({ show }) => {
           variant: 'secondary',
           loading: false,
           loadingLabel: 'Criando',
-          onClick: () => { 'clicou criar pasta' }
+          onClick: handleClickCreateFolder
         }
       ]}>
       <ListGroup variant="flush">

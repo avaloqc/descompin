@@ -21,6 +21,11 @@ export function reducer(state, action) {
         ...state,
         folders: action.payload
       }
+    case types.OpenModalCreateFolderType:
+      return {
+        ...state,
+        mode: 'createFolder'
+      }
     default:
       return state;
   }
