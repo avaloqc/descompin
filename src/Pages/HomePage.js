@@ -1,19 +1,31 @@
+import { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { CardContainer } from '../containers/Card';
 import { ModalSavePin } from '../containers/ModalSavePin';
 import { ModalCreateFolder } from '../containers/ModalCreateFolder';
 import { Notification } from '../components/Notification/Notification';
 import { useAppContext } from '../storage/AppContext';
+import { SaveFolderSuccessType } from '../storage/types';
 
 
 export const HomePage = () => {
   const { state } = useAppContext();
+  const [ showAlert, setShowAlert ] = useState(false);
+
+  useEffect(() => {
+    if (state.type === SaveFolderSuccessType) {
+      setShowAlert(true);
+    }
+  }, [state.type])
+
   return (
     <>
-      <Notification
-        message='Criado com successo'
-        onClose={() => { console.log('clicou em fechar'); }}
-      />
+      {showAlert && (
+        <Notification
+          message='Criado com successo'
+          onClose={() => { console.log('clicou em fechar'); }}
+        />
+      )}
       <ModalSavePin show={state.mode === 'savePin'} />
       <ModalCreateFolder show={state.mode === 'createFolder'} />
       <Container fluid>
