@@ -2,8 +2,7 @@ import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { Modal } from "../components/Modal";
 import { useAppContext } from '../storage/AppContext'
-import { closeModalsAction } from "../storage/actions";
-
+import { closeModalsAction, saveFolderAction } from "../storage/actions";
 
 export const ModalCreateFolder = ({ show }) => {
   const [folderName, setFolderName] = useState('');
@@ -15,6 +14,7 @@ export const ModalCreateFolder = ({ show }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    saveFolderAction(folderName, dispatch)
   }
 
   const handleChange = (e) => {
