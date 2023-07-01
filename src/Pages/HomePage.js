@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { CardContainer } from '../containers/Card';
 import { ModalSavePin } from '../containers/ModalSavePin';
@@ -23,7 +23,7 @@ export const HomePage = () => {
       {showAlert && (
         <Notification
           message='Criado com successo'
-          onClose={() => { console.log('clicou em fechar'); }}
+          onClose={() => {}}
         />
       )}
       <ModalSavePin show={state.mode === 'savePin'} />
