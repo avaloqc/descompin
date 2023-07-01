@@ -1,6 +1,10 @@
 import * as types from './types';
 import * as pinService from '../services/pinService';
 
+const sleep = (time) => (
+  new Promise (resolve => setTimeout(resolve, time))
+);
+
 export const openModalSavepinAction = () => ({
   type: types.OpenModalSaveType
 });
@@ -42,7 +46,9 @@ export const saveFolderSuccessAction = (folder) => {
   }
 }
 export const saveFolderAction = async (folderName, dispatch) => {
-  dispatch(saveFolderInitAction())
+  dispatch(saveFolderInitAction());
+  //1s delay --"async"
+  await sleep(1000);
   const folder = await pinService.saveFolder(folderName);
-  dispatch(saveFolderSuccessAction(folder))
+  dispatch(saveFolderSuccessAction(folder));
 }

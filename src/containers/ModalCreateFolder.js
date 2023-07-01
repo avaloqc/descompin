@@ -1,15 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import { Modal } from "../components/Modal";
 import { useAppContext } from '../storage/AppContext'
 import { closeModalsAction, saveFolderAction } from "../storage/actions";
+import { SaveFolderInitType, SaveFolderSuccessType } from "../storage/types";
 
 export const ModalCreateFolder = ({ show }) => {
   const [folderName, setFolderName] = useState('');
   const { state, dispatch } = useAppContext();
   
+  useEffect(() => {
+    if (state.type === SaveFolderSuccessType) {
+      handleClose();
+    }
+  }, [state.type])
+
   const handleClose = () => {
-    dispatch(closeModalsAction())
+    dispatch(closeModalsAction());
   }
 
   const handleSubmit = (e) => {
@@ -31,7 +38,7 @@ export const ModalCreateFolder = ({ show }) => {
           label: 'Criar e salvar',
           loadingLabel: 'Criando',
           variant: 'secondary',
-          loading: false,
+          loading: state.type === SaveFolderInitType,
           type:'submit',
           form: 'form-criar-pasta',
         }

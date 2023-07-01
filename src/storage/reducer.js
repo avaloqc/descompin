@@ -47,6 +47,9 @@ export function reducer(state, action) {
         folders: action.payload
       }
     default:
-      return state;
+      return {
+        ...state,
+        type: action.type
+      }
   }
 }
