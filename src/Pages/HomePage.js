@@ -7,7 +7,6 @@ import { Notification } from '../components/Notification/Notification';
 import { useAppContext } from '../storage/AppContext';
 import { SaveFolderSuccessType } from '../storage/types';
 
-
 export const HomePage = () => {
   const { state } = useAppContext();
   const [ showAlert, setShowAlert ] = useState(false);
@@ -17,20 +16,30 @@ export const HomePage = () => {
       setShowAlert(true);
     }
   }, [state.type])
-
+  
+  const handleCloseAlert = () => {
+    setShowAlert(false);
+  }
   return (
     <>
       {showAlert && (
         <Notification
           message='Criado com successo'
-          onClose={() => {}}
+          onClose={handleCloseAlert}
         />
       )}
       <ModalSavePin show={state.mode === 'savePin'} />
       <ModalCreateFolder show={state.mode === 'createFolder'} />
       <Container fluid>
         <Row>
-          <Col xs={12} md={2}><CardContainer title="Título" image="https://picsum.photos/seed/picsum/200/235" total={3} /></Col>
+          <Col xs={12} md={2}>
+            <CardContainer 
+              title="Título" 
+              image="https://picsum.photos/seed/picsum/200/235" 
+              total={3}
+              notif={handleCloseAlert} 
+            />
+          </Col>
         </Row>
       </Container>
     </>
