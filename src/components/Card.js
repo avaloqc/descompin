@@ -8,7 +8,7 @@ export const Card = ( { id, image, title, total, onClick }) => {
       <CardBS.Img src={image} alt="CardBS image" />
       <CardBS.ImgOverlay>
         <Button variant="primary" onClick={()=>{onClick(id)}}>
-          Profile <Badge bg="secondary">{total}</Badge>
+          Salvar <Badge bg="secondary">{total}</Badge>
         </Button>
       </CardBS.ImgOverlay>
       <CardBS.Body>
