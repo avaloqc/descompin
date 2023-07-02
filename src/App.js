@@ -9,7 +9,6 @@ import { HomePage } from './pages/HomePage';
 import { HeaderPartial } from './partials/HeaderPartial';
 import { MinhasPastasPage } from "./pages/MinhasPastasPages";
 
-
 const initialState = {
   folders: [],
   activePinId: null,
