@@ -14,6 +14,7 @@ const initialState = {
   activePinId: null,
   mode: null, 
   type: null,
+  pinCards: []
 }
 
 export default function App() {

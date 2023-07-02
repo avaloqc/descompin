@@ -6,39 +6,22 @@ import { ModalCreateFolder } from '../containers/ModalCreateFolder';
 import { Notification } from '../components/Notification/Notification';
 import { useAppContext } from '../storage/AppContext';
 import { SaveFolderSuccessType } from '../storage/types';
-
-const pinsData = [
-  {
-    id: '123',
-    title: 'Triginometria',
-    image: 'https://picsum.photos/200/300?53',
-    total: 0,
-  },
-  {
-    id: '234',
-    title: 'JavaScript',
-    image: 'https://picsum.photos/200/300?52',
-    total: 0,
-  },
-  {
-    id: '456',
-    title: 'Natureza',
-    image: 'https://picsum.photos/200/300?51',
-    total: 0,
-  }
-]
+import { fetchPinsDataAction } from '../storage/actions'; 
 
 export const HomePage = () => {
-  const { state } = useAppContext();
+  const { state, dispatch } = useAppContext();
   const [showAlert, setShowAlert] = useState(false);
 
-  const pinsNormalized = pinsData.map(data => (
+  const pinsNormalized = state.pinCards.map(data => (
     {
       ...data,
       total: state.folders.filter(folder => folder.pins.includes(data.id)).length
     }
   ))
 
+  useEffect(() => {
+    fetchPinsDataAction(dispatch);
+  }, [])
 
   useEffect(() => {
     if (state.type === SaveFolderSuccessType) {

@@ -53,6 +53,12 @@ export function reducer(state, action) {
         type: types.SavePinInFolderSuccessType,
         folders: action.payload
       }
+    case types.fetchPinsDataSuccessType:
+      return {
+        ...state,
+        pinCards: action.payload
+      }
+    
     default:
       return {
         ...state,
