@@ -1,12 +1,13 @@
 import * as types from './types';
 
-export function reducer(state, action) {  
+export function reducer(state, action) {
   switch (action.type) {
     case types.OpenModalSaveType:
       return {
         ...state,
         type: types.OpenModalSaveType,
-        mode: 'savePin'
+        mode: 'savePin',
+        activePinId: action.payload
       }
     case types.CloseModalsType:
       return {
@@ -44,6 +45,12 @@ export function reducer(state, action) {
       return {
         ...state,
         type: types.SaveFolderType,
+        folders: action.payload
+      }
+    case types.SavePinInFolderSuccessType:
+      return {
+        ...state,
+        type: types.SavePinInFolderSuccessType,
         folders: action.payload
       }
     default:

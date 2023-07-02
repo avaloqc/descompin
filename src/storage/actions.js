@@ -5,8 +5,9 @@ const sleep = (time) => (
   new Promise (resolve => setTimeout(resolve, time))
 );
 
-export const openModalSavepinAction = () => ({
-  type: types.OpenModalSaveType
+export const openModalSavepinAction = (pinId) => ({
+  type: types.OpenModalSaveType,
+  payload: pinId
 });
 
 export const openModalCreateFolderAction = () => ({
@@ -47,8 +48,29 @@ export const saveFolderSuccessAction = (folder) => {
 }
 export const saveFolderAction = async (folderName, dispatch) => {
   dispatch(saveFolderInitAction());
-  //1s delay --"async"
   await sleep(1000);
   const folder = await pinService.saveFolder(folderName);
   dispatch(saveFolderSuccessAction(folder));
+}
+
+export const savePinInFolderInitAction = () => {
+  return {
+    type: types.SavePinInFolderInitType,
+  }
+}
+export const savePinInFolderSuccessAction = (folders) => {
+  return {
+    type: types.SavePinInFolderSuccessType,
+    payload: folders,
+  }
+}
+
+export const savePinInFolderAction = async (dispatch, pinId, folderId) => {
+  dispatch(savePinInFolderInitAction());
+  await sleep(1000);
+  await pinService.savePinInFolder(pinId, folderId);
+  const updatedFolders = await pinService.getFolders()
+ 
+  dispatch(savePinInFolderSuccessAction(updatedFolders));
+
 }

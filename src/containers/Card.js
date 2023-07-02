@@ -4,8 +4,8 @@ import { openModalSavepinAction } from '../storage/actions';
 
 export const CardContainer = (props) => {
   const { dispatch } = useAppContext();
-  const handleClick = () => {
-    dispatch(openModalSavepinAction())
+  const handleClick = (pinId) => {
+    dispatch(openModalSavepinAction(pinId))
   }
   return (<Card {...props} onClick={handleClick} />)
 }
