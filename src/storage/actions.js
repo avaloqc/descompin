@@ -46,11 +46,12 @@ export const saveFolderSuccessAction = (folder) => {
     payload: folder
   }
 }
-export const saveFolderAction = async (folderName, dispatch) => {
+export const saveFolderAction = async (dispatch, pinId, folderName) => {
   dispatch(saveFolderInitAction());
   await sleep(1000);
   const folder = await pinService.saveFolder(folderName);
-  dispatch(saveFolderSuccessAction(folder));
+  const folderPlusPin = await pinService.savePinInFolder(pinId, folder.id)
+  dispatch(saveFolderSuccessAction(folderPlusPin));
 }
 
 export const savePinInFolderInitAction = () => {
