@@ -3,22 +3,19 @@ import { ListGroup } from '../components/ListGroup';
 import { useAppContext } from '../storage/AppContext';
 
 export const MinhasPastasPage = () => {
-  // const value = useAppContext();
+  const { state } = useAppContext();
+  console.log("el estado",state)
+
+  const items = state.folders.map(folder => (
+    {
+      title: folder.name,
+      total: folder.pins.length
+    }
+  ))
+
   return (
     <Container>
-      <ListGroup items={[
-        {
-          title: 'Matemática',
-          total: 0
-        },
-        {
-          title: 'Ciências',
-          total: 4
-        },
-        {
-          title: 'Literatura',
-          total: 3
-        }]} />
+      <ListGroup items={items} />
     </Container>
   )
 }
