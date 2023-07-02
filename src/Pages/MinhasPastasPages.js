@@ -4,7 +4,6 @@ import { useAppContext } from '../storage/AppContext';
 
 export const MinhasPastasPage = () => {
   const { state } = useAppContext();
-  console.log("el estado",state)
 
   const items = state.folders.map(folder => (
     {
